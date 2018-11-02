@@ -27,7 +27,7 @@ with tf.Session() as sess:
 	for epoch in range(training_epochs):
 		batch = mnist.train.next_batch(50)
 		#sess.run(opt,feed_dict={X:batch[0],Y:batch[1],keep_prob = 0.5})
-		if i%100==0:
+		if epoch%100==0:
 			train_accuracy = accuracy.run(feed_dict={X:batch[0],Y:batch[1]})
 			print("step %d ,training accuracy %g"%(i,train_accuracy))
 		opt.run(feed_dict={X:batch[0],Y:batch[1]})
