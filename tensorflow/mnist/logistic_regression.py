@@ -26,10 +26,10 @@ with tf.Session() as sess:
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
 	for epoch in range(training_epochs):
 		batch = mnist.train.next_batch(50)
-		#sess.run(opt,feed_dict={X:batch[0],Y:batch[1],keep_prob = 0.5})
+		sess.run(opt,feed_dict={X:batch[0],Y:batch[1],keep_prob = 0.5})
 		if epoch%100==0:
 			train_accuracy = sess.run(accuracy,feed_dict={X:batch[0],Y:batch[1]})
 			print("step %d ,training accuracy %g"%(epoch,train_accuracy))
-		opt.run(feed_dict={X:batch[0],Y:batch[1]})
+		#opt.run(feed_dict={X:batch[0],Y:batch[1]})
 	acc = sess.run(accuracy,feed_dict={X:mnist.test.images,Y:mnist.test.labels})
 	print(acc)
