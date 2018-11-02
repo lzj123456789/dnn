@@ -14,7 +14,7 @@ Y = tf.placeholder("float",[None,10])
 W = tf.Variable([28*28,10])
 b = tf.Variable([10])
 
-pred = tf.nn.softmax(tf.add(tf.multiply(W,X),b))
+pred = tf.nn.softmax(tf.add(tf.matmul(X,W),b))
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=Y,logits = pred))
 opt = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 
