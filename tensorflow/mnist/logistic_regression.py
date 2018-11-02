@@ -32,3 +32,6 @@ with tf.Session() as sess:
 			print("step %d ,training accuracy %g"%(epoch,train_accuracy))
 	acc = sess.run(accuracy,feed_dict={X:mnist.test.images,Y:mnist.test.labels})
 	print(acc)
+	res = tf.argmax(pred,1)
+	res1 = sess.run(res,feed_dict={X:mnist.test.images})
+	print(res1)
