@@ -31,5 +31,5 @@ with tf.Session() as sess:
 		opt.run(feed_dict={X:batch[0],Y:batch[1]})
 correct_prediction = tf.equal(tf.argmax(Y,1),tf.argmax(pred,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
-acc = accuracy.eval(feed_dict={X:mnist.test.images,Y:mnist.test.labels})
+acc = sess.run(accuracy,feed_dict={X:mnist.test.images,Y:mnist.test.labels})
 print(acc)
