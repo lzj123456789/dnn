@@ -12,7 +12,7 @@ testX,testY = mnist.test.next_batch(200)
 trX = tf.placeholder("float",[None,784])
 teX = tf.placeholder("float",[784])
 
-l1 = tf.reduce_sum(tf.abs(trX,tf.negative(teX)),reduction_indices = 1)
+l1 = tf.reduce_sum(tf.abs( tf.add(trX,tf.negative(teX))),reduction_indices = 1)
 pred = tf.argmin(l1,0)
 init = tf.global_variables_initializer()
 acc=0
