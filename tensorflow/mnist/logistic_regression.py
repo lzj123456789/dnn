@@ -30,9 +30,11 @@ with tf.Session() as sess:
 		if epoch%100==0:
 			train_accuracy = sess.run(accuracy,feed_dict={X:batch[0],Y:batch[1]})
 			print("step %d ,training accuracy %g"%(epoch,train_accuracy))
+	tmp_predt = tf.argmax(pred,1)
+	predt = sess.run(tmp_predt,feed_dict={X:mnist.test.images})
+	tmp_true = tf.argmax(Y,1)
+	trueRes = sess.run(tmp_true,feed_dict={Y:mnist.test.labels})
+	for (p,t) in zip(predt,trueRes):
+		print("True Result is %d, Prediction: %d"%(t,p))
 	acc = sess.run(accuracy,feed_dict={X:mnist.test.images,Y:mnist.test.labels})
 	print(acc)
-	res = tf.argmax(pred,1)
-	res1 = sess.run(res,feed_dict={X:mnist.test.images})
-	for r in res1:
-		print(r)
