@@ -23,5 +23,5 @@ with tf.Session() as sess:
 		res = sess.run(pred,feed_dict = {trX:trainX,teX:testX[i,:]})
 		print("Test: %d Prediction: %d True Class: %d"%(i,np.argmax(trainY[res]),np.argmax(testY[i])))
 		if np.argmax(trainY[res])==np.argmax(testY[i]):
-			acc++
+			acc +=1
 print("accuracy: %f"%(1.0*acc/len(testX)))
