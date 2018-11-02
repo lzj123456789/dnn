@@ -34,4 +34,5 @@ with tf.Session() as sess:
 	print(acc)
 	res = tf.argmax(pred,1)
 	res1 = sess.run(res,feed_dict={X:mnist.test.images})
-	print(res1)
+	for r in res1:
+		print(r)
