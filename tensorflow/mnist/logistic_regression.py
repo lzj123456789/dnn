@@ -20,7 +20,7 @@ opt = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 
 init = tf.global_variables_initializer()
 
-with tf.Session as sess:
+with tf.Session() as sess:
 	sess.run(init)
 	for epoch in range(training_epochs):
 		batch = mnist.train.next_batch(50)
