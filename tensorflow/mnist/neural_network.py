@@ -19,7 +19,7 @@ b3 = tf.Variable(tf.zeros([10]))
 pred = tf.nn.softmax(tf.add(tf.matmul(l2,w3),b3))
 
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y,logits = pred))
-opt = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+opt = tf.train.AdamOptimizer(1e-2).minimize(cross_entropy)
 
 init = tf.global_variables_initializer()
 with tf.Session() as sess:
@@ -27,7 +27,7 @@ with tf.Session() as sess:
 	correct_prediction = tf.equal(tf.argmax(Y,1),tf.argmax(pred,1))
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
 	for epoch in range(20000):
-		batch = mnist.train.next_batch(50)
+		batch = mnist.train.next_batch(128)
 		sess.run(opt,feed_dict={X:batch[0],Y:batch[1]})
 		if epoch % 100 ==0:
 			training_accuracy = sess.run(accuracy,feed_dict={X:batch[0],Y:batch[1]})
