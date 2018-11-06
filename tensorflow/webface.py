@@ -81,15 +81,15 @@ def read_images(dataset_path, mode, batch_size):
 # Parameters
 learning_rate = 0.001
 num_steps = 100
-batch_size = 128
-display_step = 100
+batch_size = 50
+display_step = 1
 
 # Network Parameters
-dropout = 0.75 # Dropout, probability to keep units
+dropout = 1.0 # Dropout, probability to keep units
 
 # Build the data input
 X, Y = read_images(DATASET_PATH, MODE, batch_size)
-
+print('data ok')
 
 # Create model
 def conv_net(x, n_classes, dropout, reuse, is_training):
