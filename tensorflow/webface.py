@@ -79,7 +79,7 @@ def read_images(dataset_path, mode, batch_size):
 # Note that a few elements have changed (usage of queues).
 
 # Parameters
-learning_rate = 0.001
+learning_rate = 0.01
 num_steps = 100
 batch_size = 50
 display_step = 1
