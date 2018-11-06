@@ -26,7 +26,7 @@ with tf.Session() as sess:
 	sess.run(init)
 	correct_prediction = tf.equal(tf.argmax(Y,1),tf.argmax(pred,1))
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
-	for epoch in range(20000):
+	for epoch in range(500):
 		batch = mnist.train.next_batch(128)
 		sess.run(opt,feed_dict={X:batch[0],Y:batch[1]})
 		if epoch % 100 ==0:
