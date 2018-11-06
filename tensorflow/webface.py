@@ -9,8 +9,8 @@ DATASET_PATH = '/home/ubuntu/webface/CASIA-WebFace-Align-96'
 
 # Image Parameters
 N_CLASSES = 10575 # CHANGE HERE, total number of classes
-IMG_HEIGHT = 64 # CHANGE HERE, the image height to be resized to
-IMG_WIDTH = 64 # CHANGE HERE, the image width to be resized to
+IMG_HEIGHT = 112 # CHANGE HERE, the image height to be resized to
+IMG_WIDTH = 96 # CHANGE HERE, the image width to be resized to
 CHANNELS = 3 # The 3 color channels, change to 1 if grayscale
 
 
@@ -79,7 +79,7 @@ def read_images(dataset_path, mode, batch_size):
 # Note that a few elements have changed (usage of queues).
 
 # Parameters
-learning_rate = 0.1
+learning_rate = 0.01
 num_steps = 1000
 batch_size = 80
 display_step = 1
