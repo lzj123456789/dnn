@@ -36,7 +36,7 @@ wfc2 = tf.Variable(tf.random_normal([1024,10]))
 bfc2 = tf.Variable(tf.random_normal([10]))
 pred = tf.add(tf.matmul(fc1,wfc2),bfc2)
 
-cross_entropy = tf.reduce_mean(tf.nn.softmax_entropy_with_logits(labels = Y,logits = pred))
+cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y,logits = pred))
 opt = tf.train.AdamOptimizer(1e-3).minimize(cross_entropy)
 init = tf.global_variables_initializer()
 with tf.Session() as sess:
