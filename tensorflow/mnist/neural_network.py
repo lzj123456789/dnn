@@ -6,16 +6,16 @@ mnist = input_data.read_data_sets("/tmp",one_hot=True)
 X = tf.placeholder("float",[None,28*28])
 Y = tf.placeholder("float",[None, 10])
 
-w1 = tf.Variable(tf.zeros([28*28,256]))
-b1 = tf.Variable(tf.zeros([256]))
+w1 = tf.Variable(tf.random_normal([28*28,256]))
+b1 = tf.Variable(tf.random_normal([256]))
 l1 = tf.add(tf.matmul(X,w1),b1)
 
-w2 = tf.Variable(tf.zeros([256,256]))
-b2 = tf.Variable(tf.zeros([256]))
+w2 = tf.Variable(tf.random_normal([256,256]))
+b2 = tf.Variable(tf.random_normal([256]))
 l2 = tf.add(tf.matmul(l1,w2),b2)
 
-w3 = tf.Variable(tf.zeros([256,10]))
-b3 = tf.Variable(tf.zeros([10]))
+w3 = tf.Variable(tf.random_normal([256,10]))
+b3 = tf.Variable(tf.random_normal([10]))
 pred = tf.add(tf.matmul(l2,w3),b3)
 
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y,logits = pred))
