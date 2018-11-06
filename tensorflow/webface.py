@@ -81,7 +81,7 @@ def read_images(dataset_path, mode, batch_size):
 # Parameters
 learning_rate = 0.01
 num_steps = 100
-batch_size = 50
+batch_size = 128
 display_step = 1
 
 # Network Parameters
