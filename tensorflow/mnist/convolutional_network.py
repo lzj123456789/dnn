@@ -45,11 +45,11 @@ with tf.Session() as sess:
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
 	for epoch in range(500):
 		batch = mnist.train.next_batch(128)
-		sess.run(opt,feed_dict={X:batch[0],Y:batch[1],keep_prob:0.75})
+		sess.run(opt,feed_dict={X:batch[0],Y:batch[1],keep_prob:0.8})
 		if epoch%10==0:
-			[training_accuracy,training_loss] = sess.run([accuracy,cross_entropy],feed_dict={X:batch[0],Y:batch[1],keep_prob:0.75})
+			[training_accuracy,training_loss] = sess.run([accuracy,cross_entropy],feed_dict={X:batch[0],Y:batch[1],keep_prob:1.0})
 			print("step: %d, training_accuracy %f, loss %f"%(epoch,training_accuracy,training_loss))
 	print(sess.run(accuracy,feed_dict={\
 		X:mnist.test.images,\
 		Y:mnist.test.labels,\
-		keep_prob:0.75}))
+		keep_prob:1.0}))
