@@ -16,7 +16,7 @@ l2 = tf.add(tf.matmul(l1,w2),b2)
 
 w3 = tf.Variable(tf.random_normal([256,10]))
 b3 = tf.Variable(tf.random_normal([10]))
-pred = tf.add(tf.matmul(l2,w3),b3)
+pred = tf.nn.softmax(tf.add(tf.matmul(l2,w3),b3))
 
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y,logits = pred))
 opt = tf.train.AdamOptimizer(1e-2).minimize(cross_entropy)
