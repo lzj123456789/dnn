@@ -85,7 +85,7 @@ batch_size = 50
 display_step = 1
 
 # Network Parameters
-dropout = 1.0 # Dropout, probability to keep units
+dropout = 0.8 # Dropout, probability to keep units
 
 # Build the data input
 X, Y = read_images(DATASET_PATH, MODE, batch_size)
