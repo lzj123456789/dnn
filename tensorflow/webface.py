@@ -16,7 +16,7 @@ def read_images(dataset_path,batch_size):
 		walk = os.walk(c_dir).next()
 		print(walk[2])
 		for sample in walk[2]:
-			if sample.endwith('jpg'):
+			if sample.endswith('jpg'):
 				imagepaths.append(os.path.join(c_dir,sample))
 				labels.append(label)
 		label += 1
