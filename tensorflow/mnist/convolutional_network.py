@@ -34,13 +34,14 @@ fc1 = tf.nn.dropout(fc1,keep_prob)
 #full connected layer2
 wfc2 = tf.Variable(tf.random_normal([1024,10]))
 bfc2 = tf.Variable(tf.random_normal([10]))
-pred = tf.add(tf.matmul(fc1,wfc2),bfc2)
+out = tf.add(tf.matmul(fc1,wfc2),bfc2)
 
-cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y,logits = pred))
+cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels = Y,logits = out))
 opt = tf.train.AdamOptimizer(1e-3).minimize(cross_entropy)
 init = tf.global_variables_initializer()
 with tf.Session() as sess:
 	sess.run(init)
+	pred = tf.nn.softmax(out)
 	correct_prediction = tf.equal(tf.argmax(Y,1),tf.argmax(pred,1))
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
 	for epoch in range(500):
