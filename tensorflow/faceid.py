@@ -38,15 +38,20 @@ def read_images(dataset_path, mode, batch_size):
             except Exception:  # Python 3
                 walk = os.walk(c_dir).__next__()
             # Add each image to the training set
-            for sample in walk[2]:
-                # Only keeps jpeg images
-                if sample.endswith('.jpg') or sample.endswith('.jpeg'):
-                    imagepaths.append(os.path.join(c_dir, sample))
-                    labels.append(label)
-            label += 1
+            if len(walk[2]) > 100:
+            	count = 0
+            	for sample in walk[2]:
+            		if count>120:
+            			break;
+	                # Only keeps jpeg images
+	                if sample.endswith('.jpg') or sample.endswith('.jpeg'):
+	                    imagepaths.append(os.path.join(c_dir, sample))
+	                    labels.append(label)
+	                count ++;
+	            label += 1
     else:
         raise Exception("Unknown mode.")
-
+    classesNum = label+1
     # Convert to Tensor
     imagepaths = tf.convert_to_tensor(imagepaths, dtype=tf.string)
     labels = tf.convert_to_tensor(labels, dtype=tf.int32)
@@ -69,7 +74,7 @@ def read_images(dataset_path, mode, batch_size):
                           capacity=batch_size * 8,
                           num_threads=4)
 
-    return X, Y
+    return X, Y, classesNum
 
 # -----------------------------------------------
 # THIS IS A CLASSIC CNN (see examples, section 3)
@@ -86,8 +91,8 @@ display_step = 1
 dropout = 0.99 # Dropout, probability to keep units
 
 # Build the data input
-X, Y = read_images(DATASET_PATH, 'folder', batch_size)
-
+X, Y, N_CLASSES = read_images(DATASET_PATH, 'folder', batch_size)
+print(N_CLASSES)
 
 # Create model
 def conv_net(x, n_classes, dropout, reuse, is_training):
