@@ -21,5 +21,5 @@ def read_images(dataset_path,batch_size):
 				labels.append(label)
 		label += 1
 	for (x,y) in zip(imagepaths,labels):
-		print(x+' '+y)
+		print(x+' '+str(y))
 read_images(DATASET_PATH,80)
