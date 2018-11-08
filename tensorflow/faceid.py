@@ -182,7 +182,7 @@ with tf.Session() as sess:
             sess.run(train_op)
 
     print("Optimization Finished!")
-    model_path = "./model.ckpt"
+    model_path = "~/model.ckpt"
     # Save your model
     saver.save(sess,model_path)
 
