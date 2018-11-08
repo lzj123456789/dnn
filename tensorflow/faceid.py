@@ -184,5 +184,5 @@ with tf.Session() as sess:
     print("Optimization Finished!")
 
     # Save your model
-    saver.save(sess, './my_tf_model.ckpt')
+    saver.save(sess, "my_tf_model.ckpt")
 
