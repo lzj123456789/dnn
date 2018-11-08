@@ -38,7 +38,7 @@ def read_images(dataset_path,batch_size):
 X,Y = read_images(DATASET_PATH,80)
 keep_prob = tf.placeholder(tf.float32)
 #reshape(batch_size,h,w,channel)
-xin = tf.reshape(X,shape = [-1,28,28,1])
+xin = X
 #h1 convolutional
 wc1 = tf.Variable(tf.random_normal([5,5,1,32]))
 bc1 = tf.Variable(tf.random_normal([32]))
