@@ -6,7 +6,7 @@ import os
 # Dataset Parameters - CHANGE HERE
 DATASET_PATH = '/home/ubuntu/webface/CASIA-WebFace-Align-96'
 # Image Parameters
-N_CLASSES = 10575 # CHANGE HERE, total number of classes
+N_CLASSES = 810 # CHANGE HERE, total number of classes
 IMG_HEIGHT = 112 # CHANGE HERE, the image height to be resized to
 IMG_WIDTH = 96 # CHANGE HERE, the image width to be resized to
 CHANNELS = 3 # The 3 color channels, change to 1 if grayscale
@@ -64,7 +64,7 @@ def read_images(dataset_path, mode, batch_size):
     image = tf.image.decode_jpeg(image, channels=CHANNELS)
 
     # Resize images to a common size
-    image = tf.image.resize_images(image, [IMG_HEIGHT, IMG_WIDTH])
+    image = tf.image.resize_images(image, [28, 28])
 
     # Normalize
     image = image * 1.0/127.5 - 1.0
@@ -84,11 +84,11 @@ def read_images(dataset_path, mode, batch_size):
 # Parameters
 learning_rate = 0.01
 num_steps = 500
-batch_size = 30
+batch_size = 80
 display_step = 1
 
 # Network Parameters
-dropout = 0.99 # Dropout, probability to keep units
+dropout = 0.80 # Dropout, probability to keep units
 
 # Build the data input
 X, Y, N_CLASSES = read_images(DATASET_PATH, 'folder', batch_size)
