@@ -20,4 +20,4 @@ def read_images(dataset_path,batch_size):
 				imagepaths.append(os.path.join(c_dir,sample))
 				labels.append(label)
 		label += 1
-read_images(DATASET_PATH)
+read_images(DATASET_PATH,80)
