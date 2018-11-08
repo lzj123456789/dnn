@@ -38,10 +38,10 @@ def read_images(dataset_path, mode, batch_size):
             except Exception:  # Python 3
                 walk = os.walk(c_dir).__next__()
             # Add each image to the training set
-            if len(walk[2]) > 300:
+            if len(walk[2]) > 350:
             	count = 0
             	for sample in walk[2]:
-            		if count>310:
+            		if count>360:
             			break
 	                # Only keeps jpeg images
 	                if sample.endswith('.jpg') or sample.endswith('.jpeg'):
@@ -88,7 +88,7 @@ batch_size = 128
 display_step = 1
 
 # Network Parameters
-dropout = 1 # Dropout, probability to keep units
+dropout = 0.9 # Dropout, probability to keep units
 
 # Build the data input
 X, Y, N_CLASSES = read_images(DATASET_PATH, 'folder', batch_size)
