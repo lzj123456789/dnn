@@ -38,10 +38,10 @@ def read_images(dataset_path, mode, batch_size):
             except Exception:  # Python 3
                 walk = os.walk(c_dir).__next__()
             # Add each image to the training set
-            if len(walk[2]) > 150:
+            if len(walk[2]) > 200:
             	count = 0
             	for sample in walk[2]:
-            		if count>180:
+            		if count>220:
             			break
 	                # Only keeps jpeg images
 	                if sample.endswith('.jpg') or sample.endswith('.jpeg'):
@@ -64,7 +64,7 @@ def read_images(dataset_path, mode, batch_size):
     image = tf.image.decode_jpeg(image, channels=CHANNELS)
 
     # Resize images to a common size
-    image = tf.image.resize_images(image, [64, 64])
+    image = tf.image.resize_images(image, [56, 48])
 
     # Normalize
     image = image * 1.0/127.5 - 1.0
