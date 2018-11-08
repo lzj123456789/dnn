@@ -80,7 +80,7 @@ def read_images(dataset_path, mode, batch_size):
 learning_rate = 0.01
 num_steps = 500
 batch_size = 128
-display_step = 100
+display_step = 1
 
 # Network Parameters
 dropout = 0.8 # Dropout, probability to keep units
