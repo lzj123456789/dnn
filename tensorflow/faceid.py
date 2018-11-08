@@ -64,7 +64,7 @@ def read_images(dataset_path, mode, batch_size):
     image = tf.image.decode_jpeg(image, channels=CHANNELS)
 
     # Resize images to a common size
-    image = tf.image.resize_images(image, [56, 48])
+    image = tf.image.resize_images(image, [IMG_HEIGHT, IMG_WIDTH])
 
     # Normalize
     image = image * 1.0/127.5 - 1.0
