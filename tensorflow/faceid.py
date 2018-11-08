@@ -109,13 +109,13 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
         # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
         conv2 = tf.layers.max_pooling2d(conv2, 2, 2)
 
-        # Convolution Layer with 32 filters and a kernel size of 5
-        conv3 = tf.layers.conv2d(conv2, 128, 3, activation=tf.nn.relu)
-        # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
-        conv3 = tf.layers.max_pooling2d(conv3, 2, 2)
+        # # Convolution Layer with 32 filters and a kernel size of 5
+        # conv3 = tf.layers.conv2d(conv2, 128, 3, activation=tf.nn.relu)
+        # # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
+        # conv3 = tf.layers.max_pooling2d(conv3, 2, 2)
 
         # Flatten the data to a 1-D vector for the fully connected layer
-        fc1 = tf.contrib.layers.flatten(conv3)
+        fc1 = tf.contrib.layers.flatten(conv2)
 
         # Fully connected layer (in contrib folder for now)
         fc1 = tf.layers.dense(fc1, 2048)
