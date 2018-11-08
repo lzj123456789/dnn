@@ -79,11 +79,11 @@ def read_images(dataset_path, mode, batch_size):
 # Parameters
 learning_rate = 0.01
 num_steps = 500
-batch_size = 50
+batch_size = 30
 display_step = 1
 
 # Network Parameters
-dropout = 0.8 # Dropout, probability to keep units
+dropout = 0.99 # Dropout, probability to keep units
 
 # Build the data input
 X, Y = read_images(DATASET_PATH, 'folder', batch_size)
