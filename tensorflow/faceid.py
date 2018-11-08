@@ -95,12 +95,12 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
     with tf.variable_scope('ConvNet', reuse=reuse):
 
         # Convolution Layer with 32 filters and a kernel size of 5
-        conv1 = tf.layers.conv2d(x, 256, 5, activation=tf.nn.relu)
+        conv1 = tf.layers.conv2d(x, 64, 5, activation=tf.nn.relu)
         # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
         conv1 = tf.layers.max_pooling2d(conv1, 2, 2)
 
         # Convolution Layer with 32 filters and a kernel size of 5
-        conv2 = tf.layers.conv2d(conv1, 512, 3, activation=tf.nn.relu)
+        conv2 = tf.layers.conv2d(conv1, 128, 3, activation=tf.nn.relu)
         # Max Pooling (down-sampling) with strides of 2 and kernel size of 2
         conv2 = tf.layers.max_pooling2d(conv2, 2, 2)
 
