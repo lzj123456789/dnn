@@ -38,7 +38,7 @@ def read_images(dataset_path, mode, batch_size):
             except Exception:  # Python 3
                 walk = os.walk(c_dir).__next__()
             # Add each image to the training set
-            if len(walk[2]) > 120:
+            if len(walk[2]) > 130:
             	count = 0
             	for sample in walk[2]:
             		if count>150:
@@ -64,7 +64,7 @@ def read_images(dataset_path, mode, batch_size):
     image = tf.image.decode_jpeg(image, channels=CHANNELS)
 
     # Resize images to a common size
-    image = tf.image.resize_images(image, [28, 28])
+    image = tf.image.resize_images(image, [64, 64])
 
     # Normalize
     image = image * 1.0/127.5 - 1.0
@@ -118,12 +118,16 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
         fc1 = tf.contrib.layers.flatten(conv3)
 
         # Fully connected layer (in contrib folder for now)
-        fc1 = tf.layers.dense(fc1, 1028)
+        fc1 = tf.layers.dense(fc1, 2048)
         # Apply Dropout (if is_training is False, dropout is not applied)
         fc1 = tf.layers.dropout(fc1, rate=dropout, training=is_training)
 
+        fc2 = tf.layers.dense(fc1, 1024)
+        # Apply Dropout (if is_training is False, dropout is not applied)
+        fc2 = tf.layers.dropout(fc2, rate=dropout, training=is_training)
+
         # Output layer, class prediction
-        out = tf.layers.dense(fc1, n_classes)
+        out = tf.layers.dense(fc2, n_classes)
         # Because 'softmax_cross_entropy_with_logits' already apply softmax,
         # we only apply softmax to testing network
         out = tf.nn.softmax(out) if not is_training else out
