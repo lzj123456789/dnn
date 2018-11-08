@@ -64,7 +64,7 @@ def read_images(dataset_path, mode, batch_size):
     image = tf.image.decode_jpeg(image, channels=CHANNELS)
 
     # Resize images to a common size
-    image = tf.image.resize_images(image, [56, 48])
+    image = tf.image.resize_images(image, [28, 28])
 
     # Normalize
     image = image * 1.0/127.5 - 1.0
@@ -82,8 +82,8 @@ def read_images(dataset_path, mode, batch_size):
 # Note that a few elements have changed (usage of queues).
 
 # Parameters
-learning_rate = 0.01
-num_steps = 500
+learning_rate = 0.001
+num_steps = 10000
 batch_size = 128
 display_step = 1
 
