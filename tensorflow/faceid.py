@@ -38,10 +38,10 @@ def read_images(dataset_path, mode, batch_size):
             except Exception:  # Python 3
                 walk = os.walk(c_dir).__next__()
             # Add each image to the training set
-            if len(walk[2]) > 130:
+            if len(walk[2]) > 150:
             	count = 0
             	for sample in walk[2]:
-            		if count>150:
+            		if count>180:
             			break
 	                # Only keeps jpeg images
 	                if sample.endswith('.jpg') or sample.endswith('.jpeg'):
@@ -82,7 +82,7 @@ def read_images(dataset_path, mode, batch_size):
 # Note that a few elements have changed (usage of queues).
 
 # Parameters
-learning_rate = 0.001
+learning_rate = 0.01
 num_steps = 500
 batch_size = 128
 display_step = 1
