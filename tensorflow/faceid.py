@@ -48,7 +48,7 @@ def read_images(dataset_path, mode, batch_size):
 	                    imagepaths.append(os.path.join(c_dir, sample))
 	                    labels.append(label)
 	                count +=1
-	            label += 1
+                label += 1
     else:
         raise Exception("Unknown mode.")
     classesNum = label+1
