@@ -10,14 +10,16 @@ def read_images(dataset_path,batch_size):
 	imagepaths,labels = list(),list()
 	label = 0
 	classes = sorted(os.walk(dataset_path).next()[1])
-	print(classes)
+	#print(classes)
 	for c in classes:
 		c_dir = os.path.join(dataset_path,c)
 		walk = os.walk(c_dir).next()
-		print(walk[2])
+		#print(walk[2])
 		for sample in walk[2]:
 			if sample.endswith('jpg'):
 				imagepaths.append(os.path.join(c_dir,sample))
 				labels.append(label)
 		label += 1
+	for (x,y) in zip(imagepaths,labels):
+		print(x+' '+y)
 read_images(DATASET_PATH,80)
