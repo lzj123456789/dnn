@@ -42,12 +42,12 @@ def read_images(dataset_path, mode, batch_size):
             	count = 0
             	for sample in walk[2]:
             		if count>120:
-            			break;
+            			break
 	                # Only keeps jpeg images
 	                if sample.endswith('.jpg') or sample.endswith('.jpeg'):
 	                    imagepaths.append(os.path.join(c_dir, sample))
 	                    labels.append(label)
-	                count ++;
+	                count +=1
 	            label += 1
     else:
         raise Exception("Unknown mode.")
