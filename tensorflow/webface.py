@@ -27,7 +27,7 @@ def read_images(dataset_path,batch_size):
 	image,label = tf.train.slice_input_producer([imagepaths,labels],\
 		shuffle = True)
 	image = tf.read_file(image)
-	image = tf.image.decode_jpeg(image,channels = 3)
+	image = tf.image.decode_jpeg(image,channels = 1)
 	image = tf.image.resize_images(image, [28,28])
 	image = image*1.0/127.5-1.0
 	X,Y = tf.train.batch([image,label],batch_size = batch_size,\
