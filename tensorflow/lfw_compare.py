@@ -56,7 +56,6 @@ with open('/home/ubuntu/webface/test_lst.csv') as file:
 		sess.run(init)
 		saver.restore(sess,model_path)
 		print("Model restored from file: %s" % model_path)
-		print(tf.get_collection())
 		while 1:
 			line = file.readline().split(' ')
 			if not line:
