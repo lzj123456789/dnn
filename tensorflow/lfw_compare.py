@@ -47,7 +47,7 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
     return out
 N_CLASSES=11
 X = tf.placeholder("float",[None,28,28,1])
-Y = tf.placeholder("int",[None,N_CLASSES])
+Y = tf.placeholder("float",[None,N_CLASSES])
 
 dropout = 0.8 # Dropout, probability to keep units
 
