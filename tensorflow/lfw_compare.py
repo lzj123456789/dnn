@@ -52,7 +52,7 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
 X = tf.placeholder("float",[28,28])
 # Create a graph for training
 # Create another graph for testing that reuse the same weights
-logits_test = conv_net(X, N_CLASSES, dropout, reuse=True, is_training=False)
+logits_test = conv_net(X, 11, dropout, reuse=True, is_training=False)
 
 saver = tf.train.Saver()
 with open('test_lst.csv') as file:
