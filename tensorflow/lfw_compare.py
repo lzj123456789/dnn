@@ -45,9 +45,10 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
         out = tf.nn.softmax(out) if not is_training else out
 
     return out
-X = tf.placeholder("float",[None,28,28,1])
+X = tf.placeholder("float",[None,28,28,3])
 dropout = 0.8 # Dropout, probability to keep units
 logits_test = conv_net(X, 11, dropout, reuse=True, is_training=False)
+pred = tf.argmax(logits_test, 1)
 with open('test_lst.csv') as file:
 	init = tf.global_variables_initializer()
 	with tf.Session() as sess:
@@ -67,7 +68,7 @@ with open('test_lst.csv') as file:
 				img = tf.image.decode_jpeg(img,channels=3)
 				img = tf.image.resize_images(img,[28,28])
 				img = img*1.0/127.5 - 1.0
-				print(sess.run(logits_test,feed_dict={X:img}))
+				print(sess.run(pred,feed_dict={X:img}))
 		# img1 = os.path.join(lfw_path,line[0])
 		# img2 = os.path.join(lfw_path,line[1])
 		# #print(img1+" "+img2)
