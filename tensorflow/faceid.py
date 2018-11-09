@@ -87,7 +87,7 @@ def read_images(dataset_path, mode, batch_size):
 learning_rate = 0.001
 num_steps = 10
 batch_size = 128
-display_step = 100
+display_step = 1
 
 # Network Parameters
 dropout = 0.8 # Dropout, probability to keep units
@@ -186,5 +186,5 @@ with tf.Session() as sess:
     print("Optimization Finished!")
     model_path = "./model.ckpt"
     # Save your model
-    #saver.save(sess,model_path)
+    saver.save(sess,model_path)
 
