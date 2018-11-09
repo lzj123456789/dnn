@@ -45,8 +45,10 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
         out = tf.nn.softmax(out) if not is_training else out
 
     return out
-X = tf.placeholder("float",[None,28,28,1])
 N_CLASSES=11
+X = tf.placeholder("float",[None,28,28,1])
+Y = tf.placeholder("int",[None,N_CLASSES])
+
 dropout = 0.8 # Dropout, probability to keep units
 
 logits_train = conv_net(X, N_CLASSES, dropout, reuse=False, is_training=True)
