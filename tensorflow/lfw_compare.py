@@ -67,7 +67,6 @@ with open('test_lst.csv') as file:
 				img = img*1.0/127.5 - 1.0
 				logits_test = conv_net(img, 11, dropout, reuse=True, is_training=False)
 				print(sess.run(logits_test))
-
 		# img1 = os.path.join(lfw_path,line[0])
 		# img2 = os.path.join(lfw_path,line[1])
 		# #print(img1+" "+img2)
