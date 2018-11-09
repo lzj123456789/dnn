@@ -46,9 +46,23 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
 
     return out
 X = tf.placeholder("float",[None,28,28,1])
+N_CLASSES=11
 dropout = 0.8 # Dropout, probability to keep units
-logits_test = conv_net(X, 11, dropout, reuse=False, is_training=False)
-pred = tf.argmax(logits_test, 1)
+
+logits_train = conv_net(X, N_CLASSES, dropout, reuse=False, is_training=True)
+# Create another graph for testing that reuse the same weights
+logits_test = conv_net(X, N_CLASSES, dropout, reuse=True, is_training=False)
+
+# Define loss and optimizer (with train logits, for dropout to take effect)
+loss_op = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
+    logits=logits_train, labels=Y))
+optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+train_op = optimizer.minimize(loss_op)
+
+# Evaluate model (with test logits, for dropout to be disabled)
+correct_pred = tf.equal(tf.argmax(logits_test, 1), tf.cast(Y, tf.int64))
+accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+
 saver = tf.train.Saver()
 with open('/home/ubuntu/webface/test_lst.csv') as file:
 	init = tf.global_variables_initializer()
@@ -68,6 +82,7 @@ with open('/home/ubuntu/webface/test_lst.csv') as file:
 				img = tf.image.decode_jpeg(img,channels=3)
 				img = tf.image.resize_images(img,[28,28])
 				img = img*1.0/127.5 - 1.0
+				pred = tf.argmax(logits_test,1)
 				print(sess.run(pred,feed_dict={X:img}))
 		# img1 = os.path.join(lfw_path,line[0])
 		# img2 = os.path.join(lfw_path,line[1])
