@@ -49,11 +49,12 @@ X = tf.placeholder("float",[None,28,28,3])
 dropout = 0.8 # Dropout, probability to keep units
 logits_test = conv_net(X, 11, dropout, reuse=False, is_training=False)
 pred = tf.argmax(logits_test, 1)
+saver = tf.train.Saver()
 with open('/home/ubuntu/webface/test_lst.csv') as file:
 	init = tf.global_variables_initializer()
 	with tf.Session() as sess:
 		sess.run(init)
-		new_saver.restore(sess,model_path)
+		saver.restore(sess,model_path)
 		print("Model restored from file: %s" % model_path)
 		print(tf.get_collection())
 		while 1:
