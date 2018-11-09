@@ -44,7 +44,7 @@ with tf.Session() as sess:
 	pred = tf.nn.softmax(out)
 	correct_prediction = tf.equal(tf.argmax(Y,1),tf.argmax(pred,1))
 	accuracy = tf.reduce_mean(tf.cast(correct_prediction,"float"))
-	for epoch in range(500):
+	for epoch in range(10000):
 		batch = mnist.train.next_batch(128)
 		sess.run(opt,feed_dict={X:batch[0],Y:batch[1],keep_prob:0.8})
 		if epoch%10==0:
