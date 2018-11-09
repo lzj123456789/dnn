@@ -2,6 +2,8 @@ from __future__ import print_function
 
 import tensorflow as tf
 import os
+from keras import backend as K
+K.clear_session()
 
 # Dataset Parameters - CHANGE HERE
 DATASET_PATH = '/home/ubuntu/webface/CASIA-WebFace-Align-96'
