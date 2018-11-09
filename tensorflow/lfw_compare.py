@@ -49,7 +49,7 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
 
 # Because Dropout have different behavior at training and prediction time, we
 # need to create 2 distinct computation graphs that share the same weights.
-X = tf.placeholder("float",[28,28])
+X = tf.placeholder("float",[-1,28,28,3])
 # Create a graph for training
 # Create another graph for testing that reuse the same weights
 ##!!!!!!!
