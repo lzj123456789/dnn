@@ -47,7 +47,7 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
     return out
 X = tf.placeholder("float",[None,28,28,3])
 dropout = 0.8 # Dropout, probability to keep units
-logits_test = conv_net(X, 11, dropout, reuse=True, is_training=False)
+logits_test = conv_net(X, 11, dropout, reuse=False, is_training=False)
 pred = tf.argmax(logits_test, 1)
 with open('test_lst.csv') as file:
 	init = tf.global_variables_initializer()
