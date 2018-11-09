@@ -45,18 +45,7 @@ def conv_net(x, n_classes, dropout, reuse, is_training):
         out = tf.nn.softmax(out) if not is_training else out
 
     return out
-
-
-# Because Dropout have different behavior at training and prediction time, we
-# need to create 2 distinct computation graphs that share the same weights.
-X = tf.placeholder("float",[None,28,28,3])
-# Create a graph for training
-# Create another graph for testing that reuse the same weights
-##!!!!!!!
 dropout = 0.8 # Dropout, probability to keep units
-logits_test = conv_net(X, 11, dropout, reuse=True, is_training=False)
-#!!!
-
 saver = tf.train.Saver()
 with open('test_lst.csv') as file:
 	init = tf.global_variables_initializer()
@@ -76,7 +65,8 @@ with open('test_lst.csv') as file:
 				img = tf.image.decode_jpeg(img,channels=3)
 				img = tf.image.resize_images(img,[28,28])
 				img = img*1.0/127.5 - 1.0
-				print(sess.run(logits_test,feed_dict={'X':img}))
+				logits_test = conv_net(img, 11, dropout, reuse=True, is_training=False)
+				print(sess.run(logits_test))
 
 		# img1 = os.path.join(lfw_path,line[0])
 		# img2 = os.path.join(lfw_path,line[1])
